@@ -8,3 +8,9 @@ then do the same thing for the other comparator that gets its value from the inp
 and top it off with a semicolon ";"  
 example: " A,*2;*F, 9;"  
 for multiple layers just put the next layer's values after the semicolon
+
+to open the gui just run the file called HLPWindow.py  
+you can read the small amount of comments i wrote in it and change some parameters if you want to  
+mess with it.
+
+**good luck!**
