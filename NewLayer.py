@@ -29,8 +29,8 @@ class Layer:
     # the second comparator then a ";" sign
     def get_text_representation(self) -> str:
         if self.next_layer is not None:
-            return ("*" if self.mode_a else " ") + str(hex(self.a))[2:].upper() + "," + ("*" if self.mode_b else " ") + str(hex(self.b))[2:].upper() + ";" + self.next_layer.get_text_representation()
-        return ("*" if self.mode_a else " ") + str(hex(self.a))[2:].upper() + "," + ("*" if self.mode_b else " ") + str(hex(self.b))[2:].upper() + ";"
+            return ("*" if self.mode_b else " ") + str(hex(self.b))[2:].upper() + "," + ("*" if self.mode_a else " ") + str(hex(self.a))[2:].upper() + ";" + self.next_layer.get_text_representation()
+        return ("*" if self.mode_b else " ") + str(hex(self.b))[2:].upper() + "," + ("*" if self.mode_a else " ") + str(hex(self.a))[2:].upper() + ";"
 
     # setting all the layers parameters using a text representation
     def set_text_representation(self, text_repr: str):

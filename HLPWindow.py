@@ -53,11 +53,11 @@ def update_input_values(*args):
     text_repr = text_load.get()
     # side_bar.delete("all")
     for layer in range(layers - 1, -1, -1):
-        boolean_variables[layer][0].set(text_repr.startswith("*"))
-        value_scales[layer][0].set(int(text_repr[1:2], 16))
-        text_repr = text_repr[3:]
         boolean_variables[layer][1].set(text_repr.startswith("*"))
         value_scales[layer][1].set(int(text_repr[1:2], 16))
+        text_repr = text_repr[3:]
+        boolean_variables[layer][0].set(text_repr.startswith("*"))
+        value_scales[layer][0].set(int(text_repr[1:2], 16))
         text_repr = text_repr[3:]
     change()
 
