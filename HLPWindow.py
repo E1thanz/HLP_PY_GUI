@@ -55,6 +55,8 @@ def update_input_values(*args):
     layer = layers - 1
     a = 1
     while text_repr:
+        if layer == -1:
+            break
         if text_repr[0] == ",":
             a = 0
         elif text_repr[0] == ";":
