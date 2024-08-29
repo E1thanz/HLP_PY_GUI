@@ -9,7 +9,7 @@ root = tk.Tk()  # the tkinter window
 padding = 10  # a small value I use to pad the layer dots from the edges of the screen, and also use for other spacing
 inside_padding = 80  # value between each layer
 size = 30  # size of a layer value's dot
-layers = 2  # amount of layers CHANGE THIS IF YOU WANT MORE OR LESS LAYERS
+layers = 4  # amount of layers CHANGE THIS IF YOU WANT MORE OR LESS LAYERS
 side_bar_size = 250  # pixel size of the sidebar
 root_x = 16 * (size + padding) + padding + side_bar_size
 root_y = (layers + 1) * (size + inside_padding) - inside_padding + 10 * padding + size
@@ -52,14 +52,30 @@ def update_inputs(offset):
 def update_input_values(*args):
     text_repr = text_load.get()
     # side_bar.delete("all")
-    for layer in range(layers - 1, -1, -1):
-        boolean_variables[layer][1].set(text_repr.startswith("*"))
-        value_scales[layer][1].set(int(text_repr[1:2], 16))
-        text_repr = text_repr[3:]
-        boolean_variables[layer][0].set(text_repr.startswith("*"))
-        value_scales[layer][0].set(int(text_repr[1:2], 16))
-        text_repr = text_repr[3:]
+    layer = layers - 1
+    a = 1
+    while text_repr:
+        if text_repr[0] == ",":
+            a = 0
+        elif text_repr[0] == ";":
+            layer -= 1
+            a = 1
+        elif text_repr[0] == "*":
+            boolean_variables[layer][a].set(True)
+            value_scales[layer][a].set(int(text_repr[1], 16))
+            text_repr = text_repr[1:]
+        elif text_repr[0] in "0123456789ABCDEF":
+            boolean_variables[layer][a].set(False)
+            value_scales[layer][a].set(int(text_repr[0], 16))
+        text_repr = text_repr[1:]
     change()
+    # for layer in range(layers - 1, -1, -1):
+    #     boolean_variables[layer][1].set(text_repr.startswith("*"))
+    #     value_scales[layer][1].set(int(text_repr[1:2], 16))
+    #     text_repr = text_repr[3:]
+    #     boolean_variables[layer][0].set(text_repr.startswith("*"))
+    #     value_scales[layer][0].set(int(text_repr[1:2], 16))
+    #     text_repr = text_repr[3:]
 
 
 # when scrolling it adjusts the y_offset based on limits and stuff
