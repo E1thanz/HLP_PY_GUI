@@ -9,7 +9,7 @@ root = tk.Tk()  # the tkinter window
 padding = 10  # a small value I use to pad the layer dots from the edges of the screen, and also use for other spacing
 inside_padding = 80  # value between each layer
 size = 30  # size of a layer value's dot
-layers = 4  # amount of layers CHANGE THIS IF YOU WANT MORE OR LESS LAYERS
+layers = 12  # amount of layers CHANGE THIS IF YOU WANT MORE OR LESS LAYERS
 side_bar_size = 250  # pixel size of the sidebar
 root_x = 16 * (size + padding) + padding + side_bar_size
 root_y = (layers + 1) * (size + inside_padding) - inside_padding + 10 * padding + size
@@ -94,6 +94,8 @@ def on_mouse_wheel(event):
 
 
 root.bind('<MouseWheel>', on_mouse_wheel)  # binds the mouse wheel action to the function on_mouse_wheel
+root.bind('<Button-4>', on_mouse_wheel)  # binds the wheel up for linux
+root.bind('<Button-5>', on_mouse_wheel)  # binds the wheel down for linux
 unused_lines_var = tk.BooleanVar(value=False)  # boolean variable for the unused lines check button which toggles showing unused layer lines
 # the check button for toggling showing unused lines
 unused_lines_mode = tk.Checkbutton(master=root, text="unused lines", variable=unused_lines_var, command=update_input_values)
