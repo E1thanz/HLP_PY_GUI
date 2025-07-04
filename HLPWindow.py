@@ -9,7 +9,7 @@ root = tk.Tk()  # the tkinter window
 padding = 10  # a small value I use to pad the layer dots from the edges of the screen, and also use for other spacing
 inside_padding = 80  # value between each layer
 size = 30  # size of a layer value's dot
-layers = 12  # amount of layers CHANGE THIS IF YOU WANT MORE OR LESS LAYERS
+layers = 3  # amount of layers CHANGE THIS IF YOU WANT MORE OR LESS LAYERS
 side_bar_size = 250  # pixel size of the sidebar
 root_x = 16 * (size + padding) + padding + side_bar_size
 root_y = (layers + 1) * (size + inside_padding) - inside_padding + 10 * padding + size
@@ -70,6 +70,15 @@ def update_input_values(*args):
             boolean_variables[layer][a].set(False)
             value_scales[layer][a].set(int(text_repr[0], 16))
         text_repr = text_repr[1:]
+    if a == 0:
+        layer -= 1
+    if layer != -1:
+        while layer != -1:
+            boolean_variables[layer][0].set(False)
+            value_scales[layer][0].set(0)
+            boolean_variables[layer][1].set(False)
+            value_scales[layer][1].set(0)
+            layer -= 1
     change()
     # for layer in range(layers - 1, -1, -1):
     #     boolean_variables[layer][1].set(text_repr.startswith("*"))
